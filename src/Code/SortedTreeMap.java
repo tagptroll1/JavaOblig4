@@ -8,9 +8,9 @@ import java.util.function.BiPredicate;
 
 public class SortedTreeMap<K extends Comparable<? super K>, V> implements ISortedTreeMap<K, V> {
     /**
-     * Finds the minimum value in the map, if no value is found, returns null instead.
+     * Finds the minimum entry (by key) in the map, if no value is found, returns null instead.
      *
-     * @return minimum value
+     * @return minimum entry
      */
     @Override
     public Entry<K, V> min() {
@@ -18,9 +18,9 @@ public class SortedTreeMap<K extends Comparable<? super K>, V> implements ISorte
     }
 
     /**
-     * Finds the maximum value in the map, if no value is found returns null instead.
+     * Finds the maximum entry (by key) in the map, if no value is found returns null instead.
      *
-     * @return maximum value
+     * @return maximum entry
      */
     @Override
     public Entry<K, V> max() {
