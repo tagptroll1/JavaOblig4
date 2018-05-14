@@ -1,42 +1,85 @@
 package Code;
 
-public class BinaryTree<K, V> {
-    private BinaryTree left;
-    private BinaryTree right;
-    private Entry<K, V> root;
+import Exception.EmptyTreeException;
 
-    public BinaryTree(BinaryTree left, BinaryTree right, Entry<K, V> root){
-        this.left = left;
-        this.right = right;
-        this.root = root;
+public class BinaryTree<T> {
+    private BinaryNode<T> root;
+
+    public BinaryTree(){
+        this.root = null;
     }
 
-    public BinaryTree(Entry<K, V> root){
-        this(null, null, root);
+    public BinaryTree(T root){
+        this.root = new BinaryNode<>(root);
     }
 
-    public BinaryTree getLeft(){
-        return this.left;
+    public BinaryTree(T data, BinaryTree<T> leftTree, BinaryTree<T> rightTree){
+        privateSetTree(data, leftTree, rightTree);
     }
-    public BinaryTree getRight(){
-        return this.right;
+
+    public void setTree(T data){
+        root = new BinaryNode<>(data);
     }
-    public Entry<K, V> getRoot(){
+
+    public void setTree(T data, BinaryTree<T> leftTree, BinaryTree<T> rightTree){
+        privateSetTree(data, leftTree, rightTree);
+    }
+
+    private void privateSetTree(T data, BinaryTree<T> leftTree, BinaryTree<T> rightTree){
+        root = new BinaryNode<>(data);
+
+        if ((leftTree != null) && !leftTree.isEmpty()){
+            root.setLeft(leftTree.root);
+        }
+        if ((rightTree != null) && !rightTree.isEmpty()){
+            if (rightTree != leftTree){
+                root.setRight(rightTree.root);
+            } else {
+                root.setRight(rightTree.root.copy());
+            }
+        }
+        if ((leftTree != null) && (leftTree != this)){
+            leftTree.clear();
+        }
+        if ((rightTree != null) && (rightTree != this)){
+            rightTree.clear();
+        }
+    }
+
+    public T getRootData(){
+        if (isEmpty()){
+            throw new EmptyTreeException();
+        } else {
+            return root.getData();
+        }
+    }
+
+    public BinaryNode<T> getRootNode(){
         return this.root;
     }
-    public K getKey(){
-        return this.root.key;
+
+    public void setRoot(T data){
+        this.root.setData(data);
     }
 
-    public void setLeft(BinaryTree left){
-        this.left = left;
+    public void setRootNode(BinaryNode<T> node){
+        this.root = node;
     }
 
-    public void setRight(BinaryTree right){
-        this.right = right;
+    public int getHeight(){
+        return this.root.getHeight();
     }
 
-    public void setRoot(Entry<K, V> root){
-        this.root = root;
+    public int getNumberOfNodes(){
+        return this.root.getNumberOfNodes();
     }
+
+    public boolean isEmpty(){
+        return root == null;
+    }
+
+    public void clear(){
+        this.root = null;
+    }
+
 }
