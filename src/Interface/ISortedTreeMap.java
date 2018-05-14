@@ -9,14 +9,14 @@ import java.util.function.BiPredicate;
 public interface ISortedTreeMap<K extends Comparable<? super K>, V> {
 
     /**
-     * Finds the minimum value in the map, if no value is found, returns null instead.
-     * @return minimum value
+     * Finds the minimum entry (by key) in the map, if no value is found, returns null instead.
+     * @return minimum entry
      */
     Entry<K, V> min();
 
     /**
-     * Finds the maximum value in the map, if no value is found returns null instead.
-     * @return maximum value
+     * Finds the maximum entry (by key) in the map, if no value is found returns null instead.
+     * @return maximum entry
      */
     Entry<K, V> max();
 
