@@ -1,12 +1,13 @@
 package Code;
 
 import Exception.EmptyTreeException;
+import Interface.Copyable;
 import Interface.StackInterface;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class BinaryTree<T> {
+public class BinaryTree<T extends Copyable> {
     private BinaryNode<T> root;
 
     public BinaryTree(){

@@ -1,6 +1,8 @@
 package Code;
 
-public class BinaryNode<T> {
+import Interface.Copyable;
+
+public class BinaryNode<T extends Copyable> implements Cloneable{
     private T data;
     private BinaryNode<T> leftChild;
     private BinaryNode<T> rightChild;
@@ -93,6 +95,26 @@ public class BinaryNode<T> {
             newRoot.setRight(this.rightChild.copy());
         }
         return newRoot;
+    }
+
+    @SuppressWarnings("unchecked")
+    public Object clone(){
+        BinaryNode<T> theCopy;
+        try{
+            theCopy = (BinaryNode<T>)super.clone();
+        } catch (CloneNotSupportedException e){
+            throw new Error("Clone not supported.."+e.toString());
+        }
+        theCopy.data = (T) data.clone();
+
+        if(leftChild != null){
+            theCopy.setLeft((BinaryNode<T>) leftChild.clone());
+        }
+        if (rightChild != null){
+            theCopy.setRight((BinaryNode<T>) rightChild.clone());
+        }
+
+        return theCopy;
     }
 
 
