@@ -87,9 +87,8 @@ public class BinaryTree<T extends Copyable> {
         this.root = null;
     }
 
-    @SuppressWarnings("unchecked")
-    public Iterable<T> getInorderIterator(){
-        return (Iterable<T>) new InorderIterator();
+    public Iterator<T> getInorderIterator(){
+        return new InorderIterator();
     }
 
     private class InorderIterator implements Iterator<T> {
